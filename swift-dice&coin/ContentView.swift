@@ -1,9 +1,4 @@
-//
-//  ContentView.swift
-//  swift-dice&coin
-//
-//  
-//
+
 
 import SwiftUI
 
@@ -97,31 +92,23 @@ struct BlurView: View {
     }
     
     var body: some View {
-        HStack(spacing: 1){
-            ForEach(0..<characters.count,id: \.self) { num in
-                Text(String(self.characters[num]))
-                    .font(.custom("HiraMinProN-W3", fixedSize: textSize))
-                    .blur(radius: blurValue)
-                    .opacity(opacity)
-                    .animation(.easeInOut.delay( Double(num) * 0.15 ), value: blurValue)
-                
-                
+            HStack(spacing: 1){
+                // charactersの各文字に対して処理を行う
+                ForEach(0..<characters.count,id: \.self) { num in
+                    Text(String(self.characters[num]))
+                        .font(.custom("HiraMinProN-W3", fixedSize: textSize)) // カスタムフォントの適用
+                        .blur(radius: blurValue) // ブラー効果の適用
+                        .opacity(opacity) // 不透明度の設定
+                        // アニメーションの適用（easeInOutと遅延スタート）
+                        .animation(.easeInOut.delay( Double(num) * 0.15 ), value: blurValue)
+                }
             }
-        }
-        .onAppear{
-            DispatchQueue.main.asyncAfter(deadline: .now() + baseTime) {
-                if blurValue == 0{
-                    //                    blurValue = 10
-                    //                    opacity = 0.01
+            .onAppear{
+                // baseTime後にblurValueとopacityの値を更新する
+                DispatchQueue.main.asyncAfter(deadline: .now() + baseTime) {
                     blurValue = 0
                     opacity = 1
-                } else {
-                    blurValue = 0
-                    opacity = 1
-                    
                 }
             }
         }
-        
     }
-}
