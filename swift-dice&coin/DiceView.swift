@@ -1,4 +1,9 @@
-
+//
+//  DiceView.swift
+//  swift-dice&coin
+//
+// 
+//
 
 import SwiftUI
 import AVFoundation
@@ -8,13 +13,8 @@ import AVFoundation
 struct DiceView: View {
     @State private var memberArray: [String] = [""]
     @State private var diceFaces = [
-        "die.face.1",
-        "die.face.2",
-        "die.face.3",
-        "die.face.4",
-        "die.face.5",
-        "die.face.6"
-    ]
+         ["die.face.1", "die.face.2", "die.face.3", "die.face.4", "die.face.5", "die.face.6"]
+     ]
     @State private var timer: Timer?
     @State private var isRolling = false
     // サイコロを振る効果音を読み込む
@@ -26,7 +26,7 @@ struct DiceView: View {
             
             // 各メンバーに対してサイコロ画像を表示する
             ForEach(memberArray.indices, id: \.self) { index in
-                Image(systemName: diceFaces[0])
+                            Image(systemName: diceFaces[index][0])
                     .resizable()
                     .scaledToFit()
                     .frame(width:UIScreen.main.bounds.width/2)
@@ -86,7 +86,9 @@ struct DiceView: View {
     private func rollDice() {
         isRolling = true
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-            diceFaces.shuffle()
+            for i in memberArray.indices {
+                          diceFaces[i].shuffle()
+                      }
         }
         
         // 0.7秒後にアニメーションを停止する
@@ -105,10 +107,11 @@ struct DiceView: View {
     
     // 新しいメンバーのためにサイコロを追加する関数
     private func addDice() {
-        if memberArray.count < 3 {
-            memberArray.append("")
-        }
-    }
+           if memberArray.count < 3 {
+               memberArray.append("")
+               diceFaces.append(["die.face.1", "die.face.2", "die.face.3", "die.face.4", "die.face.5", "die.face.6"])
+           }
+       }
     
     // メンバーのサイコロを削除する関数
     private func removeDice() {
