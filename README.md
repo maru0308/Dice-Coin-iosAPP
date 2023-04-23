@@ -2,6 +2,10 @@
 
 Dice&coinは、シンプルで使いやすいサイコロとコイントスアプリです。SwiftUIを使用して開発されており、iOSデバイスで動作します。アプリは、サイコロを振るシミュレーションとコインを投げるシミュレーションの両方を提供します。各シミュレーションでは、効果音が再生され、アニメーションが表示されます。
 
+# DEMO
+![Simulator Screen Recording - iPhone 14 - 2023-04-23 at 22 51 55](https://user-images.githubusercontent.com/129066320/233843794-f8c4ba57-7a7c-4f3c-bfd4-5903446acea8.gif)
+
+
 ## 機能
 
 ### サイコロを振る機能
